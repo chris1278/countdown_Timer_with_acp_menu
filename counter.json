@@ -2,7 +2,7 @@
 	"stable": {
 		"1.0": {
 			"current": "1.0.1",
-			"download": "https://github.com/chris1278/counter_with_acp_menu/releases",
+			"download": "https://github.com/chris1278/countdown_Timer_with_acp_menu/releases",
 			"announcement": "https://www.phpbb.de/community/viewtopic.php?p=1418144#p1418144",
 			"eol": null,
 			"security": false
