@@ -1,0 +1,36 @@
+imports:
+    - { resource: tables.yml }
+
+services:
+    chris1278.counter.core:
+        class: chris1278\counter\core\db_controller
+        arguments:
+            - '@template'
+            - '@dbal.conn'
+            - '@config'
+            - '@language'
+            - '%chris1278.counter.counter_table%'
+    chris1278.counter.controller.acp:
+        class: chris1278\counter\controller\acp_controller
+        arguments:
+            - '@chris1278.counter.core'
+            - '@auth'
+            - '@config'
+            - '@language'
+            - '@log'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.php_ext%'
+            - '%core.root_path%'
+    chris1278.counter.listener:
+        class: chris1278\counter\event\listener
+        arguments:
+            - '@config'
+            - '@chris1278.counter.core'
+            - '@user'
+            - '@auth'
+            - '@language'
+            - '@template'
+        tags:
+            - { name: event.listener }

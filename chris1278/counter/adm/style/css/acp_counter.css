@@ -1,0 +1,63 @@
+.col1 {
+	background-color: #DCEBFE;
+}
+
+.col2 {
+  background-color: #81DAF5	;
+}
+
+.col3 {
+	background-color: #31B4045E;
+	width: 100%;
+}
+
+.col4 {
+	background-color: #F5DA81;
+	text-align: center;
+}
+
+.col1, .col2, .col3, .col4 {
+	font-weight: bold;
+}
+
+.del_button {
+  font-weight: bold;
+  border: 1px solid #666666;
+  width: auto !important;
+  padding: 2.5px 5px;
+  font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+  color: #000;
+  font-size: 10px;
+  background: #EFEFEF  url("images/bg_button.gif") repeat-x top;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+@media only screen and (max-width: 700px), only screen
+{
+	table.responsive td > dfn {
+		color: #000000;
+		font-weight: bolder;
+	}
+}
+
+.table_counter {
+	border-spacing: 1px;
+}
+.table_dd {
+	color: #666666;
+	font-size: 15px;
+	padding: 2px;
+	display: block;
+}
+.table_dd textarea {
+	width: 90%;
+}
+
+td {
+	padding: 5px;
+}
+
+.count_val {
+	text-align: center;
+}

@@ -1,0 +1,191 @@
+{% include 'overall_header.html' %}
+{% INCLUDECSS 'css/acp_counter.css' %}
+<h1>{{ lang('ACP_COUNTER_TITLE') }}</h1>
+
+{% if COUNTER_PERM_INFO %}
+<fieldset style="text-align: center">
+	{{ COUNTER_PERM_INFO }}
+</fieldset>
+{% endif %}
+
+<fieldset>
+{{ lang('ACP_COUNTER_INSTRUCTIONS') }}
+</fieldset>
+
+<form id="chris1278_counter_acp" name="chris1278_counter_acp" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('SETTINGS') }}</legend>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_ACTIVE') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_ACTIVE_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" name="counter_active" value="1" {{ COUNTER_ACTIVE == 1 ? ' checked' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="counter_active" value="0" {{ COUNTER_ACTIVE == 0 ? ' checked' }}> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_SECOND') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_SECOND_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="number" name="counter_second" min="0" max="59" step="1" value="{{ COUNTER_SECOND }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_MINUTE') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_MINUTE_EXPLAIN') }}</span>
+				</dt>
+			<dd>
+				<input type="number" name="counter_minute" min="0" max="59" step="1" value="{{ COUNTER_MINUTE }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_HOUR') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_HOUR_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="number" name="counter_hour" min="0" max="24" step="1" value="{{ COUNTER_HOUR }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_DAY') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_DAY_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="number" name="counter_day" min="1" max="31" step="1" value="{{ COUNTER_DAY }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_MONTH') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_MONTH_EXPLAIN') }}</span></dt>
+			<dd>
+				<input type="number" name="counter_month" min="1" max="12" step="1" value="{{ COUNTER_MONTH }}">
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label>{{ lang('ACP_COUNTER_YEAR') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_YEAR_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<input type="number" name="counter_year" min="{{ COUNTER_FIX_YEAR }}" step="1" value="{{ COUNTER_YEAR }}">
+			</dd>
+		</dl>
+		<dl onchange="counterdimmer.setConfig()">	
+			<dt>
+				<label>{{ lang('ACP_COUNTER_TEXT') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_TEXT_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" name="counter_text" value="1" {{ COUNTER_TEXT == 1 ? ' checked' }}> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" id="counter_text_0" name="counter_text" value="0" {{ COUNTER_TEXT == 0 ? ' checked' }}> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+		<dl id="dim_counter_text_opt">	
+			<dt>
+				<label>{{ lang('ACP_COUNTER_TEXT_OPT') ~ lang('COLON') }}</label><br>
+				<span>{{ lang('ACP_COUNTER_TEXT_OPT_EXPLAIN') }}</span>
+			</dt>
+			<dd>
+				<select name="counter_text_opt" id="counter_text_opt">
+					<option value="1" {{ COUNTER_TEXT_OPT == 1 ? 'selected="selected"' }}>{{ lang('ACP_COUNTER_TEXT_ABOVE_BELOW') }}</option>
+					<option value="0" {{ COUNTER_TEXT_OPT == 0 ? 'selected="selected"' }}>{{ lang('ACP_COUNTER_TEXT_LEFT_RIGHT') }}</option>
+				</select>
+			</dd>
+		</dl>
+	</fieldset>
+	
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}">&nbsp;
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+<fieldset>
+	<legend>{{ lang('ACP_INFO_COUNTER_TEXT_ENTER') }}</legend>
+	{{ lang('ACP_INFO_COUNTER_TEXT_ENTER_EXPLAIN') }}
+</fieldset>
+
+<a id="anchor_texts"></a>
+<form id="chris1278_counter_lang" name="chris1278_counter_lang" method="post" action="{{ U_ACTION }}#anchor_texts">
+	<table class="table_counter">
+		<caption>{{ lang('ACP_COUNTER_OVERVIEW') }}</caption>
+		<col class="col1" /><col class="col2" /><col class="col3" /><col class="col4" />
+		<thead>
+			<tr>
+				<th>{{ lang('ACP_LANG_TEXT_POSITION') }}</th>
+				<th>{{ lang('ACP_LANG_TEXT_LANGUAGE') }}</th>
+				<th>{{ lang('ACP_TEXT_ENTER') }}</th>
+				<th>{{ lang('DELETE') }}</th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for options in loops.counter_lang_display %}
+			<tr>
+				<td>{{ options.VAR_LANG_NAME }}</td>
+				<td>{{ options.VAR_LANG_CHECK }}</td>
+				<td>{{ options.VAR_LANG_VALUE }}</td>
+				<td>
+				{% if options.VAR_LANG_INDEX %}
+					<button class="del_button" type="submit"  name="delete_counter_entry" value="{{ options.VAR_LANG_INDEX }}">{{ lang('DELETE') }}</button>
+				{% else %}
+					{{ lang('ACP_LANG_NO_ENTRY') }}
+				{% endif %}
+				
+				</td>
+				
+			</tr>
+		{% endfor %}
+			<tr>
+				<td>
+					<div class="table_dd">
+						<select name="var_lang_name" id="var_lang_name">
+							{% if COUNTER_TEXT == 1 %}
+								<option value="count_before">{{ COUNTER_TEXT_OPT_ABOVE_BEFORE }}</option>
+							{% endif %}
+							{% if COUNTER_TEXT == 1 %}
+								<option value="count_after">{{ COUNTER_TEXT_OPT_BELOW_AFTER }}</option>
+							{% endif %}
+							<option value="count_finish">{{ lang('ACP_LANG_COUNT_FINISH') }}</option>
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="table_dd">
+						<select name="var_lang_check" id="var_lang_check">
+							{% for options in loops.counter_lang_options %}
+								<option value="{{ options.LANG_ISO }}"{% if options.S_LANG_DEFAULT %} selected="selected"{% endif %}>{{ options.LANG_LOCAL_NAME }}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</td>
+				<td>
+					<div class="table_dd count_val">
+						<textarea name="var_lang_value"> {{ VAR_LANG_VALUE }}</textarea>
+					</div>			
+				</td>
+				<td>		
+				</td>
+				
+			</tr>
+		</tbody>
+	</table>
+
+	<fieldset class="submit-buttons">
+		<input class="button1" type="submit" id="site_refresh" name="site_refresh" value="{{ lang('ACP_COUNTER_REFRESH') }}">&nbsp;
+		<input class="button1" type="submit" id="save_count_lang" name="save_count_lang" value="{{ lang('ACP_SAVE') }}">&nbsp;
+		<input class="button1" type="submit" id="delete_counter_table" name="delete_counter_table" value="{{ lang('DELETE_ALL') }}">&nbsp;
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+<script>
+	var counterdimmer= {};
+</script>
+{% INCLUDEJS 'acp_counterdimmer.js' %}
+{% include 'overall_footer.html' %}

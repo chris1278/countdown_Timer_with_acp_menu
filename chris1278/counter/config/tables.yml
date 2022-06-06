@@ -1,0 +1,2 @@
+parameters:
+    chris1278.counter.counter_table: '%core.table_prefix%chris1278_counter'

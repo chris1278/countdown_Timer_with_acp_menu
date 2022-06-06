@@ -1,0 +1,30 @@
+{% if COUNTER_ACTIVE %}
+{% INCLUDECSS '@chris1278_counter/counter.css' %}
+<script>
+let countdown_year = {{ COUNTER_YEAR|json_encode|raw }};
+let Countdown_Month = {{ COUNTER_MONTH|json_encode|raw }};
+let countdown_day = {{ COUNTER_DAY|json_encode|raw }};
+let countdown_hour = {{ COUNTER_HOUR|json_encode|raw }};
+let Countdown_Minute = {{ COUNTER_MINUTE|json_encode|raw }};
+let countdown_second = {{ COUNTER_SECOND|json_encode|raw }};
+let js_counter_finish = {{ COUNTER_FINISH|json_encode|raw }};
+let js_counter_before = {{ COUNTER_BEFORE|json_encode|raw }};
+let js_counter_after = {{ COUNTER_AFTER|json_encode|raw }};
+let js_counter_break_before = {{ COUNTER_BREAK_BEFORE|json_encode|raw }};
+let js_counter_break_after = {{ COUNTER_BREAK_AFTER|json_encode|raw }};
+const count_year = '{{ lang('COUNTER_YEAR')|escape("js") }}';
+const count_years = '{{ lang('COUNTER_YEARS')|escape("js") }}';
+const count_day = '{{ lang('COUNTER_DAY')|escape("js") }}';
+const count_days = '{{ lang('COUNTER_DAYS')|escape("js") }}';
+const count_hour = '{{ lang('COUNTER_HOUR')|escape("js") }}';
+const count_hours = '{{ lang('COUNTER_HOURS')|escape("js") }}';
+const count_minute = '{{ lang('COUNTER_MINUTE')|escape("js") }}';
+const count_minutes = '{{ lang('COUNTER_MINUTES')|escape("js") }}';
+const count_second = '{{ lang('COUNTER_SECOND')|escape("js") }}';
+const count_seconds = '{{ lang('COUNTER_SECONDS')|escape("js") }}';
+</script>
+{% INCLUDEJS 'counter.js' %}
+<div  id="chris_counter">
+	{{ DISPLAY_COUNTER }}
+</div>
+{% endif %}
